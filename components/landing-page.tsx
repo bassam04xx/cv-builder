@@ -3,23 +3,34 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { LanguageToggle } from "@/components/language-toggle"
 import { useLocale } from "@/hooks/use-locale"
-import {  FileText, Zap, Download, Globe, ArrowRight, Sparkles, Users, Award } from "lucide-react"
-import { Header } from "./header"
-import { Footer } from "./footer"
+import { FileText, Zap, Download, Globe, ArrowRight, Sparkles } from "lucide-react"
+import { ResumeTypeSelection } from "./resume-type-selector"
 
 export function LandingPage() {
   const router = useRouter()
   const { t } = useLocale()
 
   const handleCreateResume = () => {
-    router.push("/select-type")
+    const resumeTypeSection = document.getElementById("resume-type-section")
+    if (resumeTypeSection) {
+      resumeTypeSection.scrollIntoView({ behavior: "smooth" })
+    }
   }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
-    <Header/>      
+      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="bg-blue-600 rounded-lg p-2">
+            <FileText className="w-6 h-6 text-white" />
+          </div>
+          <span className="text-2xl font-bold text-gray-900">ResumeBuilder</span>
+        </div>
+        <LanguageToggle />
+      </header>
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -48,25 +59,6 @@ export function LandingPage() {
               {t.landing.hero.cta}
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
-            <Button variant="outline" size="lg" className="px-8 py-4 text-lg bg-transparent">
-              {t.landing.hero.secondary}
-            </Button>
-          </div>
-
-          {/* Trust Indicators */}
-          <div className="flex flex-wrap justify-center items-center gap-8 text-gray-500 text-sm">
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4" />
-              <span>{t.landing.trust.users}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Award className="w-4 h-4" />
-              <span>{t.landing.trust.rating}</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Globe className="w-4 h-4" />
-              <span>{t.landing.trust.countries}</span>
-            </div>
           </div>
         </div>
       </section>
@@ -111,8 +103,11 @@ export function LandingPage() {
         </div>
       </section>
 
+      {/* Resume Type Selection */}
+      <ResumeTypeSelection />
+
       {/* How It Works */}
-      <section className="bg-gray-50 py-20">
+      <section className=" py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">{t.landing.howItWorks.title}</h2>
@@ -154,24 +149,19 @@ export function LandingPage() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">{t.landing.cta.title}</h2>
-          <p className="text-xl text-gray-600 mb-8">{t.landing.cta.subtitle}</p>
-          <Button
-            onClick={handleCreateResume}
-            size="lg"
-            className="px-8 py-4 text-lg bg-blue-600 hover:bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-300"
-          >
-            {t.landing.cta.button}
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Button>
-        </div>
-      </section>
-
       {/* Footer */}
-      <Footer/>
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-4 text-center">
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <div className="bg-blue-600 rounded-lg p-2">
+              <FileText className="w-6 h-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold">ResumeBuilder</span>
+          </div>
+          <p className="text-gray-400 mb-4">{t.landing.footer.tagline}</p>
+          <p className="text-gray-500 text-sm">{t.landing.footer.copyright}</p>
+        </div>
+      </footer>
     </div>
   )
 }
