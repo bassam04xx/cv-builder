@@ -219,7 +219,7 @@ export function ResumeForm({ data, onChange }: ResumeFormProps) {
             <div key={category}>
               <h4 className="font-medium mb-2 capitalize">{category} Skills</h4>
               <div className="flex flex-wrap gap-2">
-                {skills.map((skill, index) => (
+              {skills.map((skill: string, index: number) => (
                   <Badge key={index} variant="secondary" className="flex items-center gap-1">
                     {skill}
                     <button
