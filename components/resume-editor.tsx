@@ -8,6 +8,8 @@ import { ClassicTemplate } from "@/components/templates/classic-template"
 import type { ResumeData } from "@/types/resume"
 import { Button } from "@/components/ui/button"
 import { Download, Eye, EyeOff } from "lucide-react"
+import { Header } from "./header"
+import { Footer } from "./footer"
 
 const initialResumeData: ResumeData = {
   personalInfo: {
@@ -48,24 +50,8 @@ export function ResumeEditor() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b border-gray-200 px-6 py-4">
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-gray-900">Resume Builder</h1>
-            <p className="text-gray-600">{template === "modern" ? "Modern" : "Classic"} Template</p>
-          </div>
-          <div className="flex items-center gap-3">
-            <Button variant="outline" onClick={() => setIsPreviewVisible(!isPreviewVisible)} className="lg:hidden">
-              {isPreviewVisible ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-              {isPreviewVisible ? "Hide Preview" : "Show Preview"}
-            </Button>
-            <Button onClick={handleDownload} className="flex items-center gap-2">
-              <Download className="w-4 h-4" />
-              Download PDF
-            </Button>
-          </div>
-        </div>
-      </div>
+          <Header/>      
+      
 
       <div className="flex">
         {/* Form Panel */}
@@ -86,6 +72,8 @@ export function ResumeEditor() {
           </div>
         )}
       </div>
+      {/* Footer */}
+      <Footer/>
     </div>
   )
 }

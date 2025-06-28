@@ -3,9 +3,10 @@ import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { LanguageToggle } from "@/components/language-toggle"
 import { useLocale } from "@/hooks/use-locale"
-import { FileText, Zap, Download, Globe, ArrowRight, Sparkles, Users, Award } from "lucide-react"
+import {  FileText, Zap, Download, Globe, ArrowRight, Sparkles, Users, Award } from "lucide-react"
+import { Header } from "./header"
+import { Footer } from "./footer"
 
 export function LandingPage() {
   const router = useRouter()
@@ -18,15 +19,7 @@ export function LandingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
       {/* Header */}
-      <header className="container mx-auto px-4 py-6 flex justify-between items-center">
-        <div className="flex items-center gap-2">
-          <div className="bg-blue-600 rounded-lg p-2">
-            <FileText className="w-6 h-6 text-white" />
-          </div>
-          <span className="text-2xl font-bold text-gray-900">ResumeBuilder</span>
-        </div>
-        <LanguageToggle />
-      </header>
+    <Header/>      
 
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
@@ -178,18 +171,7 @@ export function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4 text-center">
-          <div className="flex items-center justify-center gap-2 mb-4">
-            <div className="bg-blue-600 rounded-lg p-2">
-              <FileText className="w-6 h-6 text-white" />
-            </div>
-            <span className="text-2xl font-bold">ResumeBuilder</span>
-          </div>
-          <p className="text-gray-400 mb-4">{t.landing.footer.tagline}</p>
-          <p className="text-gray-500 text-sm">{t.landing.footer.copyright}</p>
-        </div>
-      </footer>
+      <Footer/>
     </div>
   )
 }
